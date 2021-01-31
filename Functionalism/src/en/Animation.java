@@ -1,5 +1,6 @@
 package en;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,76 +12,65 @@ import javax.swing.JPanel;
 public class Animation extends JPanel implements Runnable {
 
 	private static final long serialVersionUID = 1L;
+
+	// private int a, b, x, y;
+	final double scale = 3.0;
 	
-	private int a, b, x, y;
-	
-	
-	
-	public void paint(Graphics g, int x, int y) {
+	public void paint(Graphics g) {
 		
-		Graphics2D g2 = (Graphics2D) g;
-		Graphics2D g3 = (Graphics2D) g;
+	/*	try {
 
-		g2.setColor(Color.red);		
-		g2.drawLine(x, y, x, y);
-		
-		g3.setColor(Color.black);
-		g3.drawLine(240, 240, 240, 240);
-	}
-	
-	public void drawFunction() {
-		try {
-			int x1,y1,i = 400;
+			
+			int x = Integer.parseInt(Frame.xField.getText());
+			int a = Integer.parseInt(Frame.aField.getText());
+			int b = Integer.parseInt(Frame.bField.getText());
 
-			a = Integer.parseInt(Frame.aField.getText());
-	    	b = Integer.parseInt(Frame.bField.getText());
-	    	x = Integer.parseInt(Frame.xField.getText());
-	    	b *=40;
-	    	b*=-1;
-	    	x=0;
-	    	y=0;
-	    			while (i >= 0) {
-	    				y = a * i + b;
-	    			//	paint(Graphics2D, x, y);
-	    				x++;
-	    				i--;
-	    			}
-	    	
-
+			int y = x * a + b;
+			//int OA = (y - b) / a;
+			//int OB = y;
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, "Only number");
 		}
+		*/
+		super.paint(g);
+
+		int OX = this.getWidth() / 2;
+		int OY = this.getHeight() / 2;
+		/*
+		int valueF = Integer.parseInt(Frame.yField.getText());
+		int valueA = Integer.parseInt(Frame.aField.getText());
+		int valueB = Integer.parseInt(Frame.bField.getText());
+		int valueX = Integer.parseInt(Frame.xField.getText());
+*/
+
+		Graphics2D g1 = (Graphics2D) g;
+		Graphics2D g2 = (Graphics2D) g;
+		Graphics2D p = (Graphics2D) g;
+
+		g1.setStroke(new BasicStroke(2));
+		g1.setColor(Color.black);
+		g1.drawLine(0, OY, OX * 2, OY);
+		g1.drawLine(OX, 0, OX, OY * 2);
+		g1.drawString("0", OX - 7, OY + 13);
+
+		
+		
+		g2.setColor(Color.red);
+		//g2.drawLine(valueX, valueF-valueB/2, OX, valueA);
+
+	//	p.drawOval(y-20, x+20, 10, 10);
+		p.setColor(Color.yellow);
+		
 		
 	}
 
 	@Override
 	public void run() {
-		
-		try {
-			int x1,y1,i = 400;
-
-			a = Integer.parseInt(Frame.aField.getText());
-	    	b = Integer.parseInt(Frame.bField.getText());
-	    	x = Integer.parseInt(Frame.xField.getText());
-	    	b *=40;
-	    	b*=-1;
-	    	x=0;
-	    	y=0;
-	    			while (i >= 0) {
-	    				y = a * i + b;
-	    			//	paint(Graphics2D, x, y);
-	    				x++;
-	    				i--;
-	    			}
-	    	
-
-		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "Only number");
-		}
-		
-	}
+			// TODO Auto-generated method stub
 	
-
 	}
 
 
+		
+
+}

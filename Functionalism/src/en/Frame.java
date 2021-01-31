@@ -1,30 +1,35 @@
 package en;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Frame extends JFrame implements ActionListener {
 
-	private double a, b, x, y;
+	private int a, b, x, y;
 	public static JTextField aField, bField, xField, yField;
 	private JLabel functionLabel, aLabel, bLabel, xLabel, yLabel;
 	private JButton countButton, drawButton;
+	public Animation animThreat; 
+
 	// Lineal function y = ax + b
 
-	/*
-	 * 
-	 */
-	public Frame() {
+	public Frame() throws IOException {
 
-		setSize(400, 400);
+		setSize(800, 400);
 		setTitle("Fuction");
 		setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		initGUI();
 
 		functionLabel = new JLabel("Lineal function: f = ax + b");
 		functionLabel.setBounds(120, 20, 150, 20);
@@ -62,6 +67,14 @@ public class Frame extends JFrame implements ActionListener {
 		yLabel = new JLabel(" y :");
 		yLabel.setBounds(50, 200, 100, 20);
 		add(yLabel);
+	}
+
+	public void initGUI() {
+
+		Animation animation = new Animation();
+		this.add(animation);
+		animation.setBounds(350, 20, 370, 320);
+		animation.setBackground(Color.white);
 
 		countButton = new JButton("Count");
 		countButton.setBounds(70, 250, 100, 20);
@@ -75,7 +88,6 @@ public class Frame extends JFrame implements ActionListener {
 
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -85,7 +97,7 @@ public class Frame extends JFrame implements ActionListener {
 				int a = Integer.parseInt(aField.getText());
 				int b = Integer.parseInt(bField.getText());
 
-				int y = x * a + b;
+				double y = x * a + b;
 
 				yField.setText(String.valueOf(y));
 			} catch (NumberFormatException err) {
@@ -98,9 +110,9 @@ public class Frame extends JFrame implements ActionListener {
 
 			}
 
-		}else if (e.getSource() == drawButton) {
-			Animation.run();
+		} else if (e.getSource() == drawButton) {
+
+		//	animThreat.run();
 		}
 	}
 }
-
