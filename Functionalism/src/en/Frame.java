@@ -2,6 +2,8 @@ package en;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -15,11 +17,12 @@ import javax.swing.JTextField;
 
 public class Frame extends JFrame implements ActionListener {
 
-	private int a, b, x, y;
-	public static JTextField aField, bField, xField, yField;
+	int a, b, x, y;
+	static int valueF;
+	public JTextField aField, bField, xField, yField;
 	private JLabel functionLabel, aLabel, bLabel, xLabel, yLabel;
 	private JButton countButton, drawButton;
-	public Animation animThreat; 
+	
 
 	// Lineal function y = ax + b
 
@@ -31,7 +34,7 @@ public class Frame extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 
-		functionLabel = new JLabel("Lineal function: f = ax + b");
+		functionLabel = new JLabel("Linear function: f = ax + b");
 		functionLabel.setBounds(120, 20, 150, 20);
 		add(functionLabel);
 
@@ -74,7 +77,7 @@ public class Frame extends JFrame implements ActionListener {
 		Animation animation = new Animation();
 		this.add(animation);
 		animation.setBounds(350, 20, 370, 320);
-		animation.setBackground(Color.white);
+		
 
 		countButton = new JButton("Count");
 		countButton.setBounds(70, 250, 100, 20);
@@ -97,9 +100,10 @@ public class Frame extends JFrame implements ActionListener {
 				int a = Integer.parseInt(aField.getText());
 				int b = Integer.parseInt(bField.getText());
 
-				double y = x * a + b;
-
+				int y = x * a + b;
+				int valueF = y;
 				yField.setText(String.valueOf(y));
+
 			} catch (NumberFormatException err) {
 				if (xField.getText().isEmpty() || aField.getText().isEmpty() || bField.getText().isEmpty()) {
 
@@ -112,7 +116,9 @@ public class Frame extends JFrame implements ActionListener {
 
 		} else if (e.getSource() == drawButton) {
 
-		//	animThreat.run();
+			Animation.animThread.run();
+
 		}
+
 	}
 }
